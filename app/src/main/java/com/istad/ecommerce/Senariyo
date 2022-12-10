@@ -1,0 +1,90 @@
+
+-----------------------------------  Dependency -------------------------------------------------
+    implementation 'com.github.bumptech.glide:glide:4.14.2'           // image
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'    //
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'      //
+    implementation("com.squareup.okhttp3:logging-interceptor:4.3.0")  // config API security
+
+-------- Use Retrofit -----------------------------------------------------------------
+1   Model Class       : the class contain the objects to be obtained from the JSON file.
+2   Retrofit instance : this class is use to send request to an API
+3   Interface Class   : this class is ues to define end point ( has annotation )
+
++ Model Class -> @SerialName  : use for map data from Json to java object
+
+    - @SerialName("_Keys") //=> find key
+      data_type variable;  //=> store data
+
++ Interface class ( service ): use for define end point ( GET, POST, PUT, DELETE, UPDATE )
+
+    - @GET("Users") //--> find End point
+      Call <List<User>> getAllUser(); //=> Call back function for call data from retrofit store on function getAllUser()
+
+    // Path variable or para
+       @GET({"Users/{id}"})
+       Call <User> getUserByID( @Path("id") int id);
+
++ Retrofit Instance : this class ues to send request to an API
+
+    // send request to api
+    - Retrofit retrofit = new Retrofit.Builder();
+      .baseUrl("https://....");
+      .addConverterFactory(GsonConverterFactory.create())
+      .build();
+---------------------------------  MVVM --------------------------------------------------------
+
++ View = widget ( UI/XML ) = draw UI , Receive User Interaction
+       => inform the << viewModel >> about the user action
+
++ ViewModel (Intermediate / RxJava / LiveData) = Hold UI Data = observable( listen )= subscriptData
+       => presentation layer, Having UI Logic and Talking to << data model >>
+       +  LiveData is an answerable data holder class.
+
++ DataModel = Model : ( Repository / Local data source / Remote Data source ) = API for saving and Loading app data
+        => abstract data source. It can have both remote and local data
+           The ViewModel work with the DataModel to get and save the Data
+
+----------------------------------- Structure Project  ------------------------------------
+1 prepare model
+2 basic interceptor
+3 RetrofitServiceGenerate
+4 Service
+5 Repository
+6
+-> get text from api
+-> Search
+-> get image from api
+-> get upload image
+->
+
+
+--------------------------------------------------------------------------------------------
+* Data
+        + Models
+            -
+        + API
+            - Response
+                . ProductPostResponse
+                . ProductResponse
+            - Request
+                . ProductPostRequest
+                . ProductRequest
+        + Remote
+            - Service
+                    . Define End point ( call back function )
+            _ Repository
+                    . Send request to API ( baseUrl )
+
+
+* UI
+        + Home
+            - adapters
+            - dialogs
+            - fragment
+
+        + ViewModel
+
+* Util
+        + BasicInterceptor ( Config API Security )
+
+
