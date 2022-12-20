@@ -8,8 +8,10 @@ public class Thumbnail implements Serializable {
 
     @SerializedName("id")
     private int id;
+
     @SerializedName("name")
     private String name;
+
     @SerializedName("url")
     private String url;
 

@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitServiceGenerator {
 
-private static String baseUrl = "https://cms.istad.co/api/";
+    private static String baseUrl = "https://cms.istad.co/api/";
 
     /*to tell client that we are going to use basic auth security*/
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor()
@@ -23,7 +23,7 @@ private static String baseUrl = "https://cms.istad.co/api/";
     /*Use API that has security*/
     private static OkHttpClient.Builder httpBuilder = new OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
-            .addInterceptor( new BasicInterceptor());
+            .addInterceptor(new BasicInterceptor());
 
     /**/
     private static Retrofit.Builder builder = new Retrofit.Builder()
@@ -35,7 +35,7 @@ private static String baseUrl = "https://cms.istad.co/api/";
     private static Retrofit retrofit = builder.build();
 
     /****************** Create service **********************/
-    public static <S> S createService ( Class<S>serviceClass){
+    public static <S> S createService(Class<S> serviceClass) {
         return retrofit.create(serviceClass);
     }
 

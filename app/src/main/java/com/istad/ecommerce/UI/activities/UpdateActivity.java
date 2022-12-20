@@ -1,4 +1,4 @@
-package com.istad.ecommerce.UI.mutable;
+package com.istad.ecommerce.UI.activities;
 
 import android.Manifest;
 import android.content.Intent;
@@ -24,8 +24,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.istad.ecommerce.R;
+import com.istad.ecommerce.UI.Adaptor.EditOnclick;
 import com.istad.ecommerce.UI.viewModel.ProductViewModel;
+import com.istad.ecommerce.data.api.Data;
 import com.istad.ecommerce.data.api.response.ProductPostResponse;
+import com.istad.ecommerce.data.models.Product;
 import com.istad.ecommerce.data.models.Thumbnail;
 import com.istad.ecommerce.utils.FilePath;
 
@@ -33,19 +36,22 @@ import java.io.File;
 import java.util.List;
 
 /* Handle on */
-public class MutableActivity extends AppCompatActivity {
 
-    Button buttonSave;
+public class UpdateActivity extends AppCompatActivity implements EditOnclick {
+
+    Button btnUpdate;
     ImageView imageView;
     EditText editTitle, editContent;
     ProgressBar progressBar;
     ProductViewModel productViewModel;
     int thumbnailID;
+    Data data;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mutable);
+        setContentView(R.layout.activity_update);
 
         initViews();
         initEvent();
@@ -57,17 +63,23 @@ public class MutableActivity extends AppCompatActivity {
         requestPermission();
     }
 
+    @Override
+    public void OnItemUpdateProduct(Data data) {
+        data = data;
+        product = data.getProduct();
+    }
+
     private void initEvent() {
         imageView.setOnClickListener(view -> {
             showFileChooser();
         });
 
-        buttonSave.setOnClickListener(view -> {
-            productViewModel.postProducts(String.valueOf(thumbnailID), editTitle.getText().toString(), editContent.getText().toString()).observe(this, new Observer<ProductPostResponse>() {
+        btnUpdate.setOnClickListener(view -> {
+            productViewModel.UpdateProduct(data.getId(), String.valueOf(thumbnailID), editTitle.getText().toString(),
+                    editContent.getText().toString()).observe(this, new Observer<ProductPostResponse>() {
                 @Override
                 public void onChanged(ProductPostResponse productPostResponse) {
-                    Toast.makeText(MutableActivity.this, "Data was post", Toast.LENGTH_SHORT).show();
-
+                    Log.d("TAG", "onChanged update : " + productPostResponse);
                 }
             });
         });
@@ -81,11 +93,12 @@ public class MutableActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        buttonSave = findViewById(R.id.btnSaveID);
-        imageView = findViewById(R.id.imgUploadID);
-        editTitle = findViewById(R.id.editTitleID);
-        editContent = findViewById(R.id.editContentID);
-        progressBar = findViewById(R.id.progressBarUpload);
+
+        btnUpdate = findViewById(R.id.btnUpdate);
+        imageView = findViewById(R.id.UpdateImageID);
+        editTitle = findViewById(R.id.UpdateTitle);
+        editContent = findViewById(R.id.UpdateContent);
+        progressBar = findViewById(R.id.progressBarUpdate);
     }
 
     void setProgressBarVisible() {
@@ -123,7 +136,7 @@ public class MutableActivity extends AppCompatActivity {
             public void onChanged(List<Thumbnail> thumbnails) {
                 String imageUrl = "https://cms.istad.co" + thumbnails.get(0).getUrl();
                 thumbnailID = thumbnails.get(0).getId();
-                Glide.with(MutableActivity.this).load(imageUrl).into(imageView);
+                Glide.with(UpdateActivity.this).load(imageUrl).into(imageView);
                 setProgressBarInvisible();
 
             }
@@ -135,16 +148,16 @@ public class MutableActivity extends AppCompatActivity {
         Log.d("TAG", "OnImage");
         int currentAPIVersion = Build.VERSION.SDK_INT;
         if (currentAPIVersion >= android.os.Build.VERSION_CODES.M) {
-            if (ContextCompat.checkSelfPermission(MutableActivity.this,
+            if (ContextCompat.checkSelfPermission(UpdateActivity.this,
                     Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(
-                        MutableActivity.this,
+                        UpdateActivity.this,
                         Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
                 } else {
                     ActivityCompat
                             .requestPermissions(
-                                    MutableActivity.this,
+                                    UpdateActivity.this,
                                     new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                                     123);
                 }
@@ -169,4 +182,6 @@ public class MutableActivity extends AppCompatActivity {
             }
         }
     }
+
+
 }

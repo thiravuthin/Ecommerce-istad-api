@@ -1,9 +1,9 @@
 package com.istad.ecommerce.data.models;
 
 /*  This class contain object that to be obtain from JSON
-*
-*
-*/
+ *
+ *
+ */
 
 import com.google.gson.annotations.SerializedName;
 
@@ -34,6 +34,8 @@ public class Product implements Serializable {
     @SerializedName("thumbnail")
     private ThumbnailData thumbnail;
 
+    @SerializedName("price")
+    private String price;
 
     public String getTitle() {
         return title;
@@ -99,6 +101,14 @@ public class Product implements Serializable {
         this.thumbnail = thumbnail;
     }
 
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -110,6 +120,7 @@ public class Product implements Serializable {
                 ", description='" + description + '\'' +
                 ", quantity='" + quantity + '\'' +
                 ", thumbnail=" + thumbnail +
+                ", price='" + price + '\'' +
                 '}';
     }
 }

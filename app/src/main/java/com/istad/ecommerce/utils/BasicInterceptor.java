@@ -16,9 +16,9 @@ public class BasicInterceptor implements Interceptor {
     String credential;
 
     // we config by type security : Our API we use basic security
-     public BasicInterceptor(){
+    public BasicInterceptor() {
 
-         this.credential= Credentials.basic("mobile","mobile123");
+        this.credential = Credentials.basic("mobile", "mobile123");
     }
 
     @NonNull
@@ -26,7 +26,7 @@ public class BasicInterceptor implements Interceptor {
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request request = chain.request();
         Request authenticatedRequest = request.newBuilder()
-                .addHeader("Authorization",credential).build();
+                .addHeader("Authorization", credential).build();
         return chain.proceed(authenticatedRequest);
     }
 }

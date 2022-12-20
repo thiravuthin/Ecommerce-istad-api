@@ -3,23 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="15dp"
-    app:layout_constraintCircleRadius="15dp"
+    android:layout_margin="10dp"
+    android:background="@drawable/shape">
 
-    >
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="10dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="20dp" />
+        app:layout_constraintGuide_end="10dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
@@ -33,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="10dp"/>
+        app:layout_constraintGuide_end="10dp" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -49,7 +48,8 @@
         <ImageView
             android:id="@+id/imageID"
             android:layout_width="150dp"
-            android:layout_height="90dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
             android:src="@drawable/ecommerce" />
     </androidx.cardview.widget.CardView>
 
@@ -57,26 +57,53 @@
         android:id="@+id/titleID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:maxLength="20"
         android:singleLine="true"
         android:text="Title"
-        android:textSize="15dp"
-        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintStart_toEndOf="@+id/cardView"
-        app:layout_constraintTop_toTopOf="@+id/cardView" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/contentID"
+        android:id="@+id/priceID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:maxLength="15"
-        android:singleLine="true"
-        android:text="Content"
+        android:layout_marginTop="8dp"
+        android:text="Price"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@+id/titleID"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/titleID"
         app:layout_constraintTop_toBottomOf="@+id/titleID" />
+
+    <ImageButton
+        android:id="@+id/editButtonID"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="4dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_edit"
+        app:layout_constraintBottom_toBottomOf="@+id/deleteButtonId"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/deleteButtonId"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/deleteButtonId"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/delete_icon"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/editButtonID"
+        app:layout_constraintHorizontal_bias=".30"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
+        app:layout_constraintTop_toBottomOf="@+id/priceID"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

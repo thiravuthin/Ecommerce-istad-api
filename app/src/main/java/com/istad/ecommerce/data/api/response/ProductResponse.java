@@ -6,10 +6,10 @@ import com.istad.ecommerce.data.api.Data;
 import java.util.List;
 
 /*  API is the place take model prepare response API
-*
-*
-*
-*/
+ *
+ *
+ *
+ */
 public class ProductResponse {
 
     @SerializedName("data")

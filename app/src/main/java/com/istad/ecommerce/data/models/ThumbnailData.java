@@ -6,8 +6,8 @@ import java.io.Serializable;
 
 public class ThumbnailData implements Serializable {
 
-        @SerializedName("data")
-        private DataAttribute data;
+    @SerializedName("data")
+    private DataAttribute data;
 
     public DataAttribute getData() {
         return data;

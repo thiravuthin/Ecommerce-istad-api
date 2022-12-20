@@ -6,20 +6,15 @@ import com.istad.ecommerce.data.models.Product;
 public class Data {
 
     @SerializedName("id")
-    private String id;
+    private int id;
     @SerializedName("attributes")
     private Product product;
 
-    public Data(String id, Product product) {
-        this.id = id;
-        this.product = product;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -34,7 +29,7 @@ public class Data {
     @Override
     public String toString() {
         return "Data{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", product=" + product +
                 '}';
     }

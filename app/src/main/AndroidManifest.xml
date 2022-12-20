@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +15,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppECommerce"
         tools:targetApi="31">
+        <activity
+            android:name="com.istad.android_component.test_activity.test1Activity"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+<!--        E-commerce app-->
+        <activity
+            android:name=".UI.activities.UpdateActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".UI.mutable.MutableActivity"
             android:exported="false">
@@ -28,14 +50,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+<!--        E-commerce app Main Start-->
         <activity
             android:name=".UI.activities.ProductActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"

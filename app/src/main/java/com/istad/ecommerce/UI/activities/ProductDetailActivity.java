@@ -1,11 +1,10 @@
 package com.istad.ecommerce.UI.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.istad.ecommerce.R;
 import com.istad.ecommerce.data.models.Product;
@@ -28,9 +27,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         content.setText(product.getDescription());
 
         // On click to see detail screen
-        if (product.getThumbnail().getData() != null){
+        if (product.getThumbnail().getData() != null) {
             Picasso.with(this)
-                    .load("https://cms.istad.co"+product.getThumbnail().getData().getThumbnail().getUrl())
+                    .load("https://cms.istad.co" + product.getThumbnail().getData().getThumbnail().getUrl())
                     .into(imageView);
         }
 
